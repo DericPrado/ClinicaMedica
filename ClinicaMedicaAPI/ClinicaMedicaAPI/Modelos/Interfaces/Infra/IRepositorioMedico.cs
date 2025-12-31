@@ -9,5 +9,6 @@ namespace ClinicaMedicaAPI.Modelos.Interfaces.Infra
         public Task<List<Medico>> ListarMedicosAtivos();
         public Task<Medico> ListaMedicoPorId(Guid id);
         public Task<bool> DeletarMedicoPorId(Guid id);
+        public Task<Guid> GerarId();
     }
 }

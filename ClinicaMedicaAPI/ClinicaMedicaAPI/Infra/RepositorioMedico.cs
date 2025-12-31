@@ -82,5 +82,12 @@ namespace ClinicaMedicaAPI.Infra
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<Guid> GerarId()
+        {
+            Guid guid = Guid.NewGuid();
+
+            return guid;
+        }
     }
 }

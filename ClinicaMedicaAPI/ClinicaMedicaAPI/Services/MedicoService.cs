@@ -39,7 +39,7 @@ namespace ClinicaMedicaAPI.Services
         {
             var medico = new Medico{ 
                 Nome = request.Nome,
-                Id = new Guid(),
+                Id = await _DbContext.GerarId(),
                 Email = request.Email,
                 Crm = request.Crm,
                 CPF = request.CPF,
