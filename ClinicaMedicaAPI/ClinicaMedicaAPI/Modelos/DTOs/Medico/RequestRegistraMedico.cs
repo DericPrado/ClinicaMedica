@@ -1,12 +1,10 @@
-﻿namespace ClinicaMedicaAPI.Modelos.Entidades
+﻿namespace ClinicaMedicaAPI.Modelos.DTOs.Medico
 {
-    public class Medico
+    public class RequestRegistraMedico
     {
-        public Guid Id { get; set; }
         public string Nome { get; set; } = string.Empty;
         public string CPF { get; set; } = string.Empty;
         public string Crm { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-        public bool Ativo { get; set; } = true;
     }
 }
