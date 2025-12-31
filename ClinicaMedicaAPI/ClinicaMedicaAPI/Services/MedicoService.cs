@@ -8,6 +8,11 @@ namespace ClinicaMedicaAPI.Services
     public class MedicoService : IMedicoService
     {
         private IRepositorioMedico _DbContext;
+        
+        public MedicoService(IRepositorioMedico dbcontext)
+        {
+            _DbContext = dbcontext;
+        }
 
         public async Task<bool> Atualizar(RequestAtualizaMedico request)
         {

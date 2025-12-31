@@ -5,7 +5,7 @@ namespace ClinicaMedicaAPI.Infra
 {
     public class RepositorioMedico : IRepositorioMedico
     {
-        private List<Medico> _MedicoDb = new List<Medico>();
+        private static List<Medico> _MedicoDb = new List<Medico>();
 
         public async Task<bool> Atualizar(Medico request)
         {
@@ -59,7 +59,7 @@ namespace ClinicaMedicaAPI.Infra
         {
             try
             {
-                List<Medico> medicos = (List<Medico>)_MedicoDb.Select(m => m.Ativo.Equals(true));
+                List<Medico> medicos = _MedicoDb.Where(m => m.Ativo.Equals(true)).ToList();
 
                 return medicos;
             }
