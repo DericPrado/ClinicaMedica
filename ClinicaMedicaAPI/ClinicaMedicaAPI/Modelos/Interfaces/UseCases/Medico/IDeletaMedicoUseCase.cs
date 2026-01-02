@@ -2,5 +2,6 @@
 {
     public interface IDeletaMedicoUseCase
     {
+        public Task<bool> Executar(Guid id);
     }
 }
