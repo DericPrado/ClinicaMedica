@@ -21,6 +21,7 @@ namespace ClinicaMedicaAPI.Services
             medico.Crm = request.Crm;
             medico.Nome = request.Nome;
             medico.Email = request.Email;
+            medico.Especialidade = request.Especialidade;
 
             return await _DbContext.Atualizar(medico);
         }
@@ -48,6 +49,7 @@ namespace ClinicaMedicaAPI.Services
                 Email = request.Email,
                 Crm = request.Crm,
                 CPF = request.CPF,
+                Especialidade = request.Especialidade,
                 Ativo = true,
             };
 
