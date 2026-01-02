@@ -17,6 +17,11 @@ namespace ClinicaMedicaAPI.Services
         public async Task<bool> Atualizar(RequestAtualizaMedico request)
         {
             var medico = await _DbContext.ListaMedicoPorId(request.Id);
+            medico.CPF = request.CPF;
+            medico.Crm = request.Crm;
+            medico.Nome = request.Nome;
+            medico.Email = request.Email;
+
             return await _DbContext.Atualizar(medico);
         }
 

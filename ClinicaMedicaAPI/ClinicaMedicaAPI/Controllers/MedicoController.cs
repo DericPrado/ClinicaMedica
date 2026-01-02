@@ -39,5 +39,16 @@ namespace ClinicaMedicaAPI.Controllers
                 return Ok();
             return BadRequest(resultado);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> AtualizarMedico([FromServices] IAtualizaMedicoUseCase useCase, [FromBody] RequestAtualizaMedico request)
+        {
+            var resultado = await useCase.Executar(request);
+
+            if(resultado)
+                return Ok();
+
+            return BadRequest(resultado);
+        }
     }
 }
