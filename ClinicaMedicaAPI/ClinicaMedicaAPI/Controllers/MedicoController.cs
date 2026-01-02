@@ -50,5 +50,15 @@ namespace ClinicaMedicaAPI.Controllers
 
             return BadRequest(resultado);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletaMedicoPorId(Guid id, [FromServices] IDeletaMedicoUseCase useCase)
+        {
+            var resultado = await useCase.Executar(id);
+            if(resultado)
+                return Ok();
+
+            return BadRequest(resultado);
+        }
     }
 }
