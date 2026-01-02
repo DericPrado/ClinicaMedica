@@ -16,6 +16,7 @@ namespace ClinicaMedicaAPI.Infra
                 medico.Crm = request.Crm;
                 medico.Email = request.Email;
                 medico.Nome = request.Nome;
+                medico.Especialidade = request.Especialidade;
 
                 return true;
 
