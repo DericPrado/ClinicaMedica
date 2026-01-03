@@ -46,7 +46,7 @@ namespace ClinicaMedicaAPI.Infra
         {
             try
             {
-                var medico = _MedicoDb.First(m => m.Id.Equals(id));
+                var medico = _MedicoDb.First(m => m.Id.Equals(id) && m.Ativo.Equals(true));
 
                 return medico;
             }
