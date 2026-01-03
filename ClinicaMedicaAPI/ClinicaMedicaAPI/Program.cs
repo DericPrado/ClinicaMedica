@@ -2,8 +2,10 @@ using ClinicaMedicaAPI.Infra;
 using ClinicaMedicaAPI.Modelos.Interfaces.Infra;
 using ClinicaMedicaAPI.Modelos.Interfaces.Services;
 using ClinicaMedicaAPI.Modelos.Interfaces.UseCases.Medico;
+using ClinicaMedicaAPI.Modelos.Interfaces.UseCases.Paciente;
 using ClinicaMedicaAPI.Services;
 using ClinicaMedicaAPI.UseCases.Medico;
+using ClinicaMedicaAPI.UseCases.Paciente;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,11 +16,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IRepositorioMedico, RepositorioMedico>();
+builder.Services.AddSingleton<IRepositorioPaciente,  RepositorioPaciente>();
 builder.Services.AddSingleton<IMedicoService, MedicoService>();
+builder.Services.AddSingleton<IPacienteService, PacienteService>();
 builder.Services.AddSingleton<IAtualizaMedicoUseCase, AtualizaMedicoUseCase>();
+builder.Services.AddSingleton<IAtualizaPacienteUseCase, AtualizaPacienteUseCase>();
 builder.Services.AddSingleton<IDeletaMedicoUseCase, DeletaMedicoUseCase>();
+builder.Services.AddSingleton<IDeletaPacienteUseCase, DeletaPacienteUseCase>();
 builder.Services.AddSingleton<IRegistraMedicoUseCase, RegistraMedicoUseCase>();
+builder.Services.AddSingleton<IRegistraPacienteUseCase,  RegistraPacienteUseCase>();
 builder.Services.AddSingleton<IRecuperaMedicoUseCase, RecuperaMedicoUseCase>();
+builder.Services.AddSingleton<IRecuperaPacienteUseCase, RecuperaPacienteUseCase>();
 
 var app = builder.Build();
 
