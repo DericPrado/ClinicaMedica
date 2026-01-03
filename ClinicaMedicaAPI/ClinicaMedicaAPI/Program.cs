@@ -3,7 +3,7 @@ using ClinicaMedicaAPI.Modelos.Interfaces.Infra;
 using ClinicaMedicaAPI.Modelos.Interfaces.Services;
 using ClinicaMedicaAPI.Modelos.Interfaces.UseCases.Medico;
 using ClinicaMedicaAPI.Services;
-using ClinicaMedicaAPI.UseCases;
+using ClinicaMedicaAPI.UseCases.Medico;
 
 var builder = WebApplication.CreateBuilder(args);
 
