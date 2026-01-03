@@ -13,12 +13,12 @@ namespace ClinicaMedicaAPI.UseCases.Medico
             _services = services;
         }
 
-        public async Task<List<Medico>> ListarMedicos()
+        public async Task<List<Modelos.Entidades.Medico>> ListarMedicos()
         {
             return await _services.ListarMedicosAtivos();
         }
 
-        public async Task<Medico> PegarMedicoPorId(Guid id)
+        public async Task<Modelos.Entidades.Medico> PegarMedicoPorId(Guid id)
         {
             return await _services.ListaMedicoPorId(id);
         }
