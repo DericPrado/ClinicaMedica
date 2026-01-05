@@ -9,7 +9,7 @@ namespace ClinicaMedicaAPI.Controllers
     [ApiController]
     public class ConsultaController : ControllerBase
     {
-        [HttpGet("{idConsulta}")]
+        [HttpGet("/idConsulta/{idConsulta}")]
         public async Task<IActionResult> RecuperarConsultaPorId(Guid idConsulta, [FromServices] IRecuperaConsultaUseCase useCase)
         {
             var resultado = await useCase.RecuperarConsultaPorId(idConsulta);
@@ -21,11 +21,11 @@ namespace ClinicaMedicaAPI.Controllers
             return Ok(resultado);
         }
 
-        [HttpGet("{idMedico}")]
+        [HttpGet("/idMedico/{idMedico}")]
         public async Task<IActionResult> RecuperarConsultasPorIdMedico(Guid idMedico, [FromServices] IRecuperaConsultaUseCase useCase)
         {
             var resultado = await useCase.RecuperarConsultasPorIdMedico(idMedico);
-            if (resultado.Equals(null))
+            if (resultado.Equals(null) || resultado.Count() == 0)
             {
                 return NotFound();
             }
@@ -33,11 +33,11 @@ namespace ClinicaMedicaAPI.Controllers
             return Ok(resultado);
         }
 
-        [HttpGet("{idPacinte}")]
+        [HttpGet("/idPaciente/{idPacinte}")]
         public async Task<IActionResult> RecuperarConsultasPorIdPaciente(Guid idPacinte, [FromServices] IRecuperaConsultaUseCase useCase)
         {
             var resultado = await useCase.RecuperarConsultasPorIdPaciente(idPacinte);
-            if (resultado.Equals(null))
+            if (resultado.Equals(null) || resultado.Count() == 0)
             {
                 return NotFound();
             }

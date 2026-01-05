@@ -51,11 +51,11 @@ namespace ClinicaMedicaAPI.UseCases.Consulta
                 return true;
             }
 
-            if(consultaMedico.First(c => c.Data.Equals(request.Data)).Ativa == true)
+            if(consultaMedico.Where(c => c.Data.Equals(request.Data) && c.Ativa.Equals(true)).Count() > 0)
             {
                 return false;
             }
-            else if(consultaPaciente.First(c => c.Data.Equals(request.Data)).Ativa == true)
+            else if(consultaPaciente.Where(c => c.Data.Equals(request.Data) && c.Ativa.Equals(true)).Count() > 0)
             {
                 return false;
             }
