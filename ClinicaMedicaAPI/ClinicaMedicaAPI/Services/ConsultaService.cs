@@ -10,7 +10,7 @@ namespace ClinicaMedicaAPI.Services
 
         public ConsultaService(IRepositorioConsulta dbContext)
         {
-            __DbContext = dbContext;
+            _DbContext = dbContext;
         }
 
         public async Task<bool> Atualizar(Consulta consulta)
