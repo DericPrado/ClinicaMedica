@@ -20,7 +20,20 @@ namespace ClinicaMedicaAPI.UseCases.Medico
 
         public async Task<Modelos.Entidades.Medico> PegarMedicoPorId(Guid id)
         {
-            return await _services.ListaMedicoPorId(id);
+            try
+            {
+                var medico = await _services.ListaMedicoPorId(id);
+                if(medico.Ativo.Equals(false))
+                {
+                    return null;
+                }
+
+                return medico;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
