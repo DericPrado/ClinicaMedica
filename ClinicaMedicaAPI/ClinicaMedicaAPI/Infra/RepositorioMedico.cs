@@ -11,7 +11,7 @@ namespace ClinicaMedicaAPI.Infra
         {
             try
             {
-                var medico = _MedicoDb.First(m => m.Id.Equals(request.Id));
+                var medico = await ListaMedicoPorId(request.Id);
                 medico.CPF = request.CPF;
                 medico.Crm = request.Crm;
                 medico.Email = request.Email;
@@ -31,7 +31,7 @@ namespace ClinicaMedicaAPI.Infra
         {
             try
             {
-                var medico = _MedicoDb.First(m => m.Id.Equals(id));
+                var medico = await ListaMedicoPorId(id);
                 medico.Ativo = false;
 
                 return true;

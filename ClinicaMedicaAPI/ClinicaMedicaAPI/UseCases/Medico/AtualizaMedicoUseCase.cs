@@ -2,7 +2,7 @@
 using ClinicaMedicaAPI.Modelos.Interfaces.Services;
 using ClinicaMedicaAPI.Modelos.Interfaces.UseCases.Medico;
 
-namespace ClinicaMedicaAPI.UseCases
+namespace ClinicaMedicaAPI.UseCases.Medico
 {
     public class AtualizaMedicoUseCase : IAtualizaMedicoUseCase
     {
