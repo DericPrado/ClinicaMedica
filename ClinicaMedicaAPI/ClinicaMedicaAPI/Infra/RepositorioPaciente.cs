@@ -50,7 +50,7 @@ namespace ClinicaMedicaAPI.Infra
         {
             try
             {
-                var paciente = _PacienteDb.First(p => p.Id.Equals(id) && p.Ativo.Equals(true));
+                var paciente = _PacienteDb.First(p => p.Id.Equals(id));
 
                 return paciente;
             }

@@ -27,7 +27,13 @@ namespace ClinicaMedicaAPI.UseCases.Paciente
         {
             try
             {
-                return await _pacienteService.ListaPacientePorId(id);
+                var paciente = await _pacienteService.ListaPacientePorId(id);
+                if(paciente.Ativo.Equals(false))
+                {
+                    return null;
+                }
+
+                return paciente;
             }
             catch (Exception ex)
             {
