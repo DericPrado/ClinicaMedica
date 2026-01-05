@@ -47,5 +47,17 @@ namespace ClinicaMedicaAPI.UseCases.Consulta
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<List<Modelos.Entidades.Consulta>> RecuperarConsultasAtivas()
+        {
+            try
+            {
+                return await _consultaservice.RecuperarConsultasAtivas();
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
