@@ -105,6 +105,7 @@ namespace ClinicaMedicaAPI.Infra
         {
             try
             {
+                consulta.IdConsulta = await GerarId();
                 _dbConsulta.Add(consulta);
 
                 return true;
