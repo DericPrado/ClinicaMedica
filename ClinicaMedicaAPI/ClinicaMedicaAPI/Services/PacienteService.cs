@@ -14,14 +14,10 @@ namespace ClinicaMedicaAPI.Services
             _repostorioPaciente = repostorioPaciente;
         }
 
-        public async Task<bool> Atualizar(RequestAtualizaPaciente request)
+        public async Task<bool> Atualizar(Paciente paciente)
         {
             try
             {
-                var paciente = await _repostorioPaciente.ListaPacientePorId(request.Id);
-                paciente.CPF = request.CPF;
-                paciente.Nome = request.Nome;
-                paciente.Telefone = request.Telefone;
                 return await _repostorioPaciente.Atualizar(paciente);
             }
             catch (Exception ex) 
@@ -66,19 +62,10 @@ namespace ClinicaMedicaAPI.Services
             }
         }
 
-        public async Task<bool> Registrar(RequestRegistraPaciente request)
+        public async Task<bool> Registrar(Paciente paciente)
         {
             try
             {
-                var paciente = new Paciente
-                {
-                    Nome = request.Nome,
-                    CPF = request.CPF,
-                    Telefone = request.Telefone,
-                    Ativo = true,
-                    Id = await _repostorioPaciente.GerarId()
-
-                };
                 return await _repostorioPaciente.Registrar(paciente);
             }
             catch (Exception ex)

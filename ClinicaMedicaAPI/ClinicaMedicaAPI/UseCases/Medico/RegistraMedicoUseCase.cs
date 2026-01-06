@@ -15,7 +15,32 @@ namespace ClinicaMedicaAPI.UseCases.Medico
 
         public async Task<bool> Executar(RequestRegistraMedico request)
         {
-            return await _medicoService.Registrar(request);
+            try
+            {
+                if(string.IsNullOrEmpty(request.Especialidade) ||
+                    string.IsNullOrEmpty(request.CPF) ||
+                    string.IsNullOrEmpty(request.Crm) ||
+                    string.IsNullOrEmpty(request.Nome) ||
+                    string.IsNullOrEmpty(request.Email))
+                {
+                    return false;
+                }
+                var medico = new Modelos.Entidades.Medico
+                {
+                    Especialidade = request.Especialidade,
+                    CPF = request.CPF,
+                    Crm = request.Crm,
+                    Nome = request.Nome,
+                    Email = request.Email,
+                    Ativo = true
+                };
+
+                return await _medicoService.Registrar(medico);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

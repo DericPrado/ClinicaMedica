@@ -15,7 +15,36 @@ namespace ClinicaMedicaAPI.UseCases.Medico
 
         public async Task<bool> Executar(RequestAtualizaMedico request)
         {
-            return await _medicoService.Atualizar(request);
+            try
+            {
+                var medicoAtualizado = await _medicoService.ListaMedicoPorId(request.Id);
+                if(!string.IsNullOrEmpty(request.CPF))
+                {
+                    medicoAtualizado.CPF = request.CPF;
+                }
+                if(!string.IsNullOrEmpty(request.Crm))
+                {
+                    medicoAtualizado.Crm = request.Crm;
+                }
+                if(!string.IsNullOrEmpty(request.Email))
+                {
+                    medicoAtualizado.Email = request.Email;
+                }
+                if(!string.IsNullOrEmpty(request.Nome))
+                {
+                    medicoAtualizado.Nome = request.Nome;
+                }
+                if(!string.IsNullOrEmpty(request.Especialidade))
+                {
+                    medicoAtualizado.Especialidade = request.Especialidade;
+                }
+
+                return await _medicoService.Atualizar(medicoAtualizado);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
