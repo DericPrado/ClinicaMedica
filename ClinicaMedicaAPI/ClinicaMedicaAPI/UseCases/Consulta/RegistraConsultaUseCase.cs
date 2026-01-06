@@ -17,20 +17,50 @@ namespace ClinicaMedicaAPI.UseCases.Consulta
         {
             try
             {
-                var consulta = new Modelos.Entidades.Consulta
+                if(await ValidaAgenda(request))
                 {
-                    IdMedico = request.IdMedico,
-                    IdPaciente = request.IdPaciente,
-                    Data = request.Data,
-                    Ativa = true
-                };
+                    var consulta = new Modelos.Entidades.Consulta
+                    {
+                        IdMedico = request.IdMedico,
+                        IdPaciente = request.IdPaciente,
+                        Data = request.Data,
+                        Ativa = true
+                    };
 
-                return await _consultaService.Registrar(consulta);
+                    return await _consultaService.Registrar(consulta);
+                }
+
+                return false;
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public async Task<bool> ValidaAgenda(RequestRegistraConsulta request)
+        {
+            var consultaMedico = new List<Modelos.Entidades.Consulta>();
+            var consultaPaciente = new List<Modelos.Entidades.Consulta>();
+
+            consultaMedico = await _consultaService.RecuperarConsultasPorIdMedico(request.IdMedico);
+            consultaPaciente = await _consultaService.RecuperarConsultasPorIdPaciente(request.IdPaciente);
+
+            if(consultaMedico.Count == 0 && consultaPaciente.Count == 0)
+            {
+                return true;
+            }
+
+            if(consultaMedico.Where(c => c.Data.Equals(request.Data) && c.Ativa.Equals(true)).Count() > 0)
+            {
+                return false;
+            }
+            else if(consultaPaciente.Where(c => c.Data.Equals(request.Data) && c.Ativa.Equals(true)).Count() > 0)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
