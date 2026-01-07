@@ -37,7 +37,7 @@ namespace ClinicaMedicaAPI.Controllers
 
             if (resultado)
                 return Ok();
-            return BadRequest(resultado);
+            return BadRequest("Todos os campos são obrigatórios.");
         }
 
         [HttpPut]

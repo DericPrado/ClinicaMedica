@@ -69,6 +69,7 @@ namespace ClinicaMedicaAPI.Infra
         {
             try
             {
+                medico.Id = await GerarId();
                 _PacienteDb.Add(medico);
 
                 return true; 

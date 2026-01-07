@@ -17,15 +17,22 @@ namespace ClinicaMedicaAPI.UseCases.Consulta
         {
             try
             {
-                var consulta = new Modelos.Entidades.Consulta
-                {
-                    IdMedico = request.IdMedico,
-                    IdPaciente = request.IdPaciente,
-                    Data = request.Data,
-                    IdConsulta = request.IdConsulta,
-                };
+                var consultaAtualizada = await _consultaService.RecuperarConsultaPorId(request.IdConsulta);
 
-                return await _consultaService.Atualizar(consulta);
+                if(!string.IsNullOrEmpty(request.IdPaciente.ToString()) && request.IdPaciente != consultaAtualizada.IdPaciente)
+                {
+                    consultaAtualizada.IdPaciente = request.IdPaciente;
+                }
+                if(!string.IsNullOrEmpty(request.IdMedico.ToString()) && request.IdMedico != consultaAtualizada.IdMedico)
+                {
+                    consultaAtualizada.IdMedico = request.IdMedico;
+                }
+                if(!string.IsNullOrEmpty(request.Data.ToString()) && request.Data != consultaAtualizada.Data)
+                {
+                    consultaAtualizada.Data = request.Data;
+                }
+
+                return await _consultaService.Atualizar(consultaAtualizada);
             }
             catch (Exception ex)
             {

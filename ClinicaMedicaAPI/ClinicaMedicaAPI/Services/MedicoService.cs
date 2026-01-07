@@ -1,5 +1,4 @@
-﻿using ClinicaMedicaAPI.Modelos.DTOs.Medico;
-using ClinicaMedicaAPI.Modelos.Entidades;
+﻿using ClinicaMedicaAPI.Modelos.Entidades;
 using ClinicaMedicaAPI.Modelos.Interfaces.Infra;
 using ClinicaMedicaAPI.Modelos.Interfaces.Services;
 
@@ -14,15 +13,8 @@ namespace ClinicaMedicaAPI.Services
             _DbContext = dbcontext;
         }
 
-        public async Task<bool> Atualizar(RequestAtualizaMedico request)
+        public async Task<bool> Atualizar(Medico medico)
         {
-            var medico = await _DbContext.ListaMedicoPorId(request.Id);
-            medico.CPF = request.CPF;
-            medico.Crm = request.Crm;
-            medico.Nome = request.Nome;
-            medico.Email = request.Email;
-            medico.Especialidade = request.Especialidade;
-
             return await _DbContext.Atualizar(medico);
         }
 
@@ -41,18 +33,8 @@ namespace ClinicaMedicaAPI.Services
             return await _DbContext.ListarMedicosAtivos();
         }
 
-        public async Task<bool> Registrar(RequestRegistraMedico request)
+        public async Task<bool> Registrar(Medico medico)
         {
-            var medico = new Medico{ 
-                Nome = request.Nome,
-                Id = await _DbContext.GerarId(),
-                Email = request.Email,
-                Crm = request.Crm,
-                CPF = request.CPF,
-                Especialidade = request.Especialidade,
-                Ativo = true,
-            };
-
             return await _DbContext.Registrar(medico);
         }
     }

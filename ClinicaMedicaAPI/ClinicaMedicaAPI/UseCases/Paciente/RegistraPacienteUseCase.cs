@@ -16,7 +16,22 @@ namespace ClinicaMedicaAPI.UseCases.Paciente
         {
             try
             {
-                return await _pacienteService.Registrar(request);
+                if(string.IsNullOrEmpty(request.Telefone) ||
+                    string.IsNullOrEmpty(request.Nome) ||
+                    string.IsNullOrEmpty(request.CPF))
+                {
+                    return false;
+                }
+
+                var paciente = new Modelos.Entidades.Paciente
+                {
+                    Nome = request.Telefone,
+                    Telefone = request.Nome,
+                    CPF = request.CPF,
+                    Ativo = true,
+                };
+
+                return await _pacienteService.Registrar(paciente);
             }
             catch (Exception ex)
             {

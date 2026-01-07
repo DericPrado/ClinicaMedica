@@ -1,5 +1,4 @@
-﻿using ClinicaMedicaAPI.Modelos.Entidades;
-using ClinicaMedicaAPI.Modelos.Interfaces.Services;
+﻿using ClinicaMedicaAPI.Modelos.Interfaces.Services;
 using ClinicaMedicaAPI.Modelos.Interfaces.UseCases.Medico;
 
 namespace ClinicaMedicaAPI.UseCases.Medico
