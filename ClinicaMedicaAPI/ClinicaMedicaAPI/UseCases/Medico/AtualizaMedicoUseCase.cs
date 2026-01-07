@@ -18,23 +18,23 @@ namespace ClinicaMedicaAPI.UseCases.Medico
             try
             {
                 var medicoAtualizado = await _medicoService.ListaMedicoPorId(request.Id);
-                if(!string.IsNullOrEmpty(request.CPF))
+                if(!string.IsNullOrEmpty(request.CPF) && request.CPF != medicoAtualizado.CPF)
                 {
                     medicoAtualizado.CPF = request.CPF;
                 }
-                if(!string.IsNullOrEmpty(request.Crm))
+                if(!string.IsNullOrEmpty(request.Crm) && request.Crm != medicoAtualizado.Crm)
                 {
                     medicoAtualizado.Crm = request.Crm;
                 }
-                if(!string.IsNullOrEmpty(request.Email))
+                if(!string.IsNullOrEmpty(request.Email) && request.Email != medicoAtualizado.Email)
                 {
                     medicoAtualizado.Email = request.Email;
                 }
-                if(!string.IsNullOrEmpty(request.Nome))
+                if(!string.IsNullOrEmpty(request.Nome) && request.Nome != medicoAtualizado.Nome)
                 {
                     medicoAtualizado.Nome = request.Nome;
                 }
-                if(!string.IsNullOrEmpty(request.Especialidade))
+                if(!string.IsNullOrEmpty(request.Especialidade) && request.Especialidade != medicoAtualizado.Especialidade)
                 {
                     medicoAtualizado.Especialidade = request.Especialidade;
                 }
