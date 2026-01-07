@@ -17,15 +17,15 @@ namespace ClinicaMedicaAPI.UseCases.Paciente
             try
             {
                 var pacienteAtualizado = await _pacienteService.ListaPacientePorId(request.Id);
-                if(!string.IsNullOrEmpty(request.Telefone))
+                if(!string.IsNullOrEmpty(request.Telefone) && request.Telefone != pacienteAtualizado.Telefone)
                 {
                     pacienteAtualizado.Telefone = request.Telefone;
                 }
-                if(!string.IsNullOrEmpty(request.Nome))
+                if(!string.IsNullOrEmpty(request.Nome) && request.Nome != pacienteAtualizado.Nome)
                 {
                     pacienteAtualizado.Nome = request.Nome;
                 }
-                if(!string.IsNullOrEmpty(request.CPF))
+                if(!string.IsNullOrEmpty(request.CPF) && request.CPF != pacienteAtualizado.CPF)
                 {
                     pacienteAtualizado.CPF = request.CPF;
                 }
